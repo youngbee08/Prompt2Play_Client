@@ -1,0 +1,97 @@
+.section{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-family: BaseNeue, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin-top: 3rem;
+}
+
+.section .content{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 80%;
+    margin: auto;
+}
+
+.section .content h1{
+    font-size: 70px;
+    line-height: 62px;
+    color: #323232;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.section .content h4{
+    font-size: 20px;
+    line-height: 24px;
+    color: #323232;
+    font-weight: 400;
+    font-style: normal;
+    transform: translateY(-3rem);
+    font-weight: 600;
+}
+
+.section .actionBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-2rem);
+}
+
+.section .actionBtn button{
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding:1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    cursor: pointer;
+}
+
+.section .actionBtn button:hover{
+    background-color: #364152;
+}
+@media (max-width: 1024px) {
+  .section{
+    margin-top: 1rem;
+  }
+  .section .content h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .section .content h4 {
+    font-size: 1rem;
+    transform: translateY(-.8rem);
+  }
+
+  .section .actionBtn{
+    transform: translateY(0);
+  }
+
+  .section .actionBtn button {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section .content h1 {
+    font-size: 1.7rem;
+  }
+
+  .section .content h4 {
+    font-size: 0.95rem;
+  }
+
+  .section .actionBtn button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    flex-direction: row;
+  }
+}
