@@ -1,0 +1,7 @@
+.scrollCon{
+    background-color: rgb(102, 102, 102);
+    color: white;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}

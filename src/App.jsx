@@ -8,6 +8,7 @@ import VerifyAccount from "./pages/VerifyAccount"
 import AuthProvider from "./contexts/AuthContext"
 import { Toaster } from "sonner"
 import CheckMailMessage from "./pages/CheckMailMessage"
+import NotFound from "./components/NotFound"
 const App = () => {
   return (
     <AuthProvider>
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/login" element={<Login/>}/>
           <Route path="/verify" element={<CheckMailMessage/>}/>
           <Route path="/verify/:token" element={<VerifyAccount/>}/>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
       <Toaster richColors position="top-right" expand closeButton visibleToasts={1}/>

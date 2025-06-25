@@ -1,0 +1,51 @@
+.videoDemo {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.videoDemo h2{
+   font-size: 40px;
+   text-transform:uppercase;
+   position: relative;
+   margin-bottom: 5rem;
+   cursor:default;
+}
+
+.videoDemo h2::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    height: 4px;
+    width: 10%;
+    margin: auto;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    transform: translateY(.8rem);
+}
+
+.videoWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .videoDemo {
+    padding: 3rem 1rem;
+  }
+
+  .videoDemo h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .videoDemo h2 {
+    font-size: 1.4rem;
+  }
+}

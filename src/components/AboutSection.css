@@ -1,16 +1,43 @@
 .aboutSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 4rem .2rem;
+  padding: 4rem 0.2rem;
   width: 90%;
   margin: auto;
 }
 
-.aboutSection .imgCon{
-    width: 50%;
-    height: 500px !important;
+.aboutSection .sectionTitle{
+   font-size: 40px;
+   text-transform:uppercase;
+   position: relative;
+   margin-bottom: 5rem;
+   cursor:default;
+   text-align: center;
+}
+
+.aboutSection .sectionTitle::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    height: 4px;
+    width: 10%;
+    margin: auto;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    transform: translateY(.8rem);
+}
+
+.aboutSection .sectionContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.aboutSection .imgCon {
+  width: 50%;
+  height: 500px;
 }
 
 .aboutSection .imgCon img {
@@ -34,21 +61,23 @@
 .aboutSection .content h4 {
   font-size: 1.1rem;
   color: #6b7280;
+  margin-bottom: 0.8rem;
 }
 
 @media (max-width: 1024px) {
-  .aboutSection {
+  .aboutSection .sectionContent {
     flex-direction: column;
     text-align: start;
-    padding: .5rem 1rem;
+    padding: 2rem 1rem;
   }
 
-  .aboutSection .imgCon{
+  .aboutSection .imgCon,
+  .aboutSection .content {
     width: 100%;
   }
 
-  .aboutSection .content{
-    width: 100%;
+  .aboutSection .imgCon img {
+    max-width: 100%;
   }
 
   .aboutSection .content h1 {
@@ -59,27 +88,40 @@
   .aboutSection .content h4 {
     font-size: 1rem;
   }
-
-  .aboutSection .imgCon img {
-    max-width: 90%;
-  }
 }
 
 @media (max-width: 768px) {
+  .aboutSection .sectionTitle{
+    font-size: 22px;
+    margin: 0 0 2rem 0;
+  }
+
+  .aboutSection .sectionTitle::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    height: 4px;
+    width: 30% !important;
+    margin: auto;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    transform: translateY(.8rem);
+  }
+
   .aboutSection .content h1 {
     font-size: 1.5rem;
   }
 
-  .aboutSection .imgCon{
-    width: 100%;
-  }
-
-  .aboutSection .content{
-    width: 100%;
-  }
-
   .aboutSection .content h4 {
     font-size: 0.95rem;
+  }
+
+  .aboutSection .imgCon,
+  .aboutSection .content {
+    width: 100%;
   }
 
   .aboutSection .imgCon img {

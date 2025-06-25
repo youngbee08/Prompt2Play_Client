@@ -7,7 +7,9 @@ import { toast } from 'sonner';
 
 const CheckMail = () => {
   const currentUserMail = localStorage.getItem("currentUserMail");
-  const {authRequest,authLoading,currentUser,isSuccess} = useContext(AuthContext);
+  const {authRequest,currentUser,isSuccess} = useContext(AuthContext);
+  const [resending, setResending] = useState(false)
+  const [redirecting, setRedirecting] = useState(false)
   const [counting, setCounting] = useState(false);
   const [counter, setCounter] = useState(0);
   const navigate = useNavigate()
@@ -35,20 +37,34 @@ const CheckMail = () => {
   
   const resendMail = async (e)=>{
     e.preventDefault();
-    authRequest({email:currentUserMail}, "resendVMail");
-    count()
+    setResending(true)
+    try {
+      await authRequest({email:currentUserMail}, "resendVMail");
+      count()
+    } catch (error) {
+      console.log(error)
+    } finally{
+      setResending(false)
+    }
   };
 
   const continueFnc = async (e)=>{
     e.preventDefault();
-    await authRequest({email:currentUserMail}, "reloadUser");
-    console.log(currentUser)
-    if (isSuccess && currentUser) {
-      if (currentUser.isEmailVerified) {
-        navigate("/login");
-      } else {
-        toast.error("Your email has not been verified. Please verify before continuing.");
+    setRedirecting(true)
+    try {
+      await authRequest({email:currentUserMail}, "reloadUser");
+      console.log(currentUser)
+      if (isSuccess && currentUser) {
+        if (currentUser.isEmailVerified) {
+          navigate("/login");
+        } else {
+          toast.error("Your email has not been verified. Please verify before continuing.");
+        }
       }
+    } catch (error) {
+      console.log(error)
+    } finally{
+      setRedirecting(false)
     }
   };
   return (
@@ -60,14 +76,14 @@ const CheckMail = () => {
         <p>Please click the link to verify your account and get started.</p>
 
         <div className="actions">
-          {/* <button disabled={authLoading || counting} className='resend-btn' onClick={resendMail}>
-          {authLoading
+          <button disabled={resending || counting} className='resend-btn' onClick={resendMail}>
+          {resending
             ? "Resending..."
             : counting
             ? `Resend In ${counter}s`
             : "Resend Mail"}
-          </button> */}
-          <button className="continue-btn" disabled={authLoading} onClick={continueFnc}>{authLoading ? (<div className="spinner"></div>) : "Continue"}</button>
+          </button>
+          <button className="continue-btn" disabled={redirecting} onClick={continueFnc}>{redirecting ? (<div className="spinner"></div>) : "Continue"}</button>
         </div>
       </div>
     </div>

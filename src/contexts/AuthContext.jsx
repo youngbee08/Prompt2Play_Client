@@ -7,13 +7,11 @@ const AuthProvider = ({children}) => {
 
     const base_Url = import.meta.env.VITE_SERVER_URL;
 
-    const [authLoading, setAuthLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
     
     const authRequest = async (userDetails,authRequestType) => {
-        setAuthLoading(true)
         try {
             const res = await fetch(`${base_Url}/auth/${authRequestType}`,{
                 method:"POST",
@@ -40,16 +38,12 @@ const AuthProvider = ({children}) => {
             } else {
                 toast.error("An unexpected error occurred. Please try again.");
             }
-        } finally{
-            setAuthLoading(false)
         }
     };
 
     
     const value = {
         authRequest,
-        authLoading,
-        setAuthLoading,
         isSuccess,
         currentUser,
         setCurrentUser

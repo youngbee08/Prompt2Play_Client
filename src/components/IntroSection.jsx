@@ -18,7 +18,7 @@ const IntroSection = () => {
         <h4>AI-powered video creation that helps teams work smarter, not harder.</h4>
       </div>
       <div className="actionBtn">
-        <Link>
+        <Link to={{pathname:"/generate"}}>
           <button>Get Started for Free <ArrowBigRight /> </button>
         </Link>
       </div>

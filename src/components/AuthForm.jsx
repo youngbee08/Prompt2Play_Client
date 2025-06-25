@@ -21,7 +21,9 @@ const signupFormSchema = yup.object({
 });
 
 const AuthForm = () => {
-  const {authRequest,authLoading,isSuccess} = useContext(AuthContext);
+  const {authRequest,isSuccess} = useContext(AuthContext);
+
+  const [signingUp,setSigningUp] = useState(false)
 
   const {register, handleSubmit, formState:{errors, touchedFields},trigger} = useForm({
     resolver:yupResolver(signupFormSchema),
@@ -33,9 +35,16 @@ const AuthForm = () => {
 
   const submitSignupForm = async (data,e)=>{
     e.preventDefault();
-    localStorage.setItem("currentUserMail", data.email);
-    authRequest(data, "signup");
-    isSuccess ? navigate("/verify"):"";
+    setSigningUp(true)
+    try {
+      localStorage.setItem("currentUserMail", data.email);
+      await authRequest(data, "signup");
+      isSuccess && navigate("/verify")
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setSigningUp(false)
+    }
   };
 
   
@@ -118,9 +127,9 @@ const AuthForm = () => {
                   {touchedFields.phoneNumber && errors.phoneNumber && (<p className='error'>{errors.phoneNumber.message}</p>)}
 
                   <div className="authBtn">
-                    <button disabled={authLoading}>
-                      {!authLoading ? 'Sign Up' : ''}
-                      {authLoading ? (<div className="spinner"></div>) : ''}
+                    <button disabled={signingUp}>
+                      {!signingUp ? 'Sign Up' : ''}
+                      {signingUp ? (<div className="spinner"></div>) : ''}
                     </button>
                   </div>
 

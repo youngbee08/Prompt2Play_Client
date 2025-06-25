@@ -1,0 +1,72 @@
+.featureSection {
+  padding: 4rem 10%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.featureSection h2{
+   font-size: 40px;
+   text-transform:uppercase;
+   position: relative;
+   margin-bottom: 5rem;
+   cursor:default;
+}
+
+.featureSection h2::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    height: 4px;
+    width: 10%;
+    margin: auto;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    transform: translateY(.8rem);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.featureCard {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+.featureCard:hover {
+  transform: scale(1.04);
+}
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width:800px) {
+    .featureSection{
+        padding: .5rem 1rem;
+    }
+    .featureSection h2{
+        font-size: 22px;
+    }
+    .featureSection h2::after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        height: 4px;
+        width: 30% !important;
+        margin: auto;
+        text-align: center;
+        transition: all 1s ease-in-out;
+        transform: translateY(.8rem);
+    }
+}

@@ -5,6 +5,10 @@ body {
   background-color: #ebecec;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 a {
   color: inherit;
   text-decoration: none;

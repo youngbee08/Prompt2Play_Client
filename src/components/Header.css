@@ -69,15 +69,38 @@
 }
 
 .nav-links a.scrolled::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 3px;
-    background-color: white;
-    transform: translateY(.3rem);
-    transition: 0.5s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: white;
+  transform: translateY(.3rem);
+  transition: 0.5s ease-in-out;
+}
+
+.nav-links a.onHome::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  transform: translateY(.3rem);
+  transition: 0.5s ease-in-out;
+}
+.nav-links a.onHome.scrolled::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transform: translateY(.3rem);
+  transition: 0.5s ease-in-out;
 }
 
 .nav-links a:hover::after{

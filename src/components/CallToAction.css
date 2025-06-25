@@ -1,0 +1,27 @@
+.ctaSection {
+  padding: 3rem 10%;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ctaBtn {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: rgb(43, 42, 42);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s;
+}
+.ctaBtn:hover {
+  background-color: black;
+}

@@ -2,18 +2,22 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { header } from 'framer-motion/client';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
+  const [onHome, setOnHome] = useState(false);
 
   const scroll = ()=>{
     window.scrollY > 0 ? setScrolled(true):setScrolled(false);
+    window.screenY >= 0 ? setOnHome(true):setOnHome(false);
   };
 
   window.addEventListener("scroll", scroll)
+
   return (
-    <header className={`header ${scrolled ? "scrolled" : ""} ${isOpened ? "open" : ''}`}>
+    <header className={`header ${scrolled && "scrolled"} ${isOpened && "open"}`}>
       <div className="headerContainer">
         <div className="logo">
           <strong className='prompt'>Prompt</strong>
@@ -22,22 +26,22 @@ export default function Header() {
         </div>
         <nav>
           <ul className="nav-links">
-            <li><Link to="/" className={`${scrolled ? "scrolled" : ""}`}>Home</Link></li>
-            <li><Link to="/generate" className={`${scrolled ? "scrolled" : ""}`}>Generate</Link></li>
-            <li><Link to="/about" className={`${scrolled ? "scrolled" : ""}`}>About</Link></li>
+            <li><a href="#" className={`${scrolled && "scrolled"} ${onHome && "onHome"}`}>Home</a></li>
+            <li><Link to="/generate" className={`${scrolled && "scrolled"}`}>Generate</Link></li>
+            <li><a href="#about" className={`${scrolled && "scrolled"}`}>About</a></li>
           </ul>
         </nav>
         <div className="auth-buttons">
-          <Link to="/login" className={`btn login-btn ${scrolled ? "scrolled" : ""}`}>Login</Link>
-          <Link to="/signup" className={`btn signup-btn ${scrolled ? "scrolled" : ""}`}>Sign Up</Link>
+          <Link to="/login" className={`btn login-btn ${scrolled && "scrolled"}`}>Login</Link>
+          <Link to="/signup" className={`btn signup-btn ${scrolled && "scrolled"}`}>Sign Up</Link>
         </div>
         <div className="mobile">
           <button onClick={() => setIsOpened(!isOpened)}>{!isOpened ? <Menu size={25}/> : <X size={25}/>}</button>
         </div>
         <div className={`hiddenNav ${isOpened ? "open" : "close"}`}>
-          <Link to="/">Home</Link>
+          <a href="#">Home</a>
           <Link to="/generate">Generate</Link>
-          <Link to="/about">About</Link>
+          <a href="#about">About</a>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
