@@ -7,7 +7,8 @@ const AuthProvider = ({children}) => {
 
     const base_Url = import.meta.env.VITE_SERVER_URL;
 
-    const [isSuccess, setIsSuccess] = useState(false);
+    const [isSigningUp, setIsSigningUp] = useState(false);
+    const [isSigningIn, setIsSigningIn] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
     
@@ -19,13 +20,11 @@ const AuthProvider = ({children}) => {
                 body:JSON.stringify(userDetails)
             });
             const data = await res.json();
-            data.user && setCurrentUser(data.user)
 
             if (data.status === "success") {
                 if (data.message !== "User reloaded successfully") {
                     toast.success(data.message);
                 }
-                setIsSuccess(true);
                 } else {
                 toast.error(data.message);
             }
@@ -41,12 +40,25 @@ const AuthProvider = ({children}) => {
         }
     };
 
+    const checkIsAuthenticated = () =>{
+        const hasToken = localStorage.getItem("accessToken");
+        if (!hasToken) {
+            return(false)
+        } else{
+            return(true)
+        }
+    };
+
     
     const value = {
         authRequest,
-        isSuccess,
+        isSigningUp,
+        setIsSigningUp,
+        isSigningIn,
+        setIsSigningIn,
         currentUser,
-        setCurrentUser
+        setCurrentUser,
+        checkIsAuthenticated,
     };
   return (
     <AuthContext.Provider value={value}>

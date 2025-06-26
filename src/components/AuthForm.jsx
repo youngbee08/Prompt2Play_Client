@@ -19,14 +19,19 @@ const signupFormSchema = yup.object({
   password:yup.string().required("Please provide a Password").matches(passwordRegex, 'Password must start with a capital letter, include special characters, and be 6-14 characters long'),
   phoneNumber:yup.string().required("Please Provide your Phone Number").matches(nigerianPhoneRegex, "Please provide a valid Nigerian Phone Number")
 });
+const signinFormSchema = yup.object({
+  email:yup.string().required("Please provide your Email Address").email("Please enter a valid Email Address"),
+  password:yup.string().required("Please provide a Password")
+});
 
 const AuthForm = () => {
-  const {authRequest,isSuccess} = useContext(AuthContext);
+  const location = useLocation();
 
-  const [signingUp,setSigningUp] = useState(false)
+  const {authRequest,isSigningUp,setIsSigningUp,isSigningIn,setIsSigningIn} = useContext(AuthContext);
+
 
   const {register, handleSubmit, formState:{errors, touchedFields},trigger} = useForm({
-    resolver:yupResolver(signupFormSchema),
+    resolver:yupResolver(location.pathname === "/signup" ? signupFormSchema : location.pathname === "/login" ? signinFormSchema : ""),
     mode:'onTouched',
     reValidateMode:'onChange',
   });
@@ -35,20 +40,36 @@ const AuthForm = () => {
 
   const submitSignupForm = async (data,e)=>{
     e.preventDefault();
-    setSigningUp(true)
+    setIsSigningUp(true)
     try {
       localStorage.setItem("currentUserMail", data.email);
-      await authRequest(data, "signup");
-      isSuccess && navigate("/verify")
+      const res = await authRequest(data, "signup");
+      res.status === "success" && navigate("/verify")
     } catch (error) {
       console.log(error)
     }finally{
-      setSigningUp(false)
+      setIsSigningUp(false)
     }
   };
-
   
-  const location = useLocation();
+  const submitSignInForm = async(data,e)=>{
+    e.preventDefault()
+    setIsSigningIn(true);
+    try {
+      const res = await authRequest(data, "signIn");
+      if (res) {
+        if (res.status === "success") {
+          navigate("/generate")
+          localStorage.setItem("accessToken", res.accessToken)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    } finally{
+      setIsSigningIn(false)
+    }
+  };
+  
   return (
     <div className="container">
         <Link className="signupHeader" to="/">
@@ -127,9 +148,9 @@ const AuthForm = () => {
                   {touchedFields.phoneNumber && errors.phoneNumber && (<p className='error'>{errors.phoneNumber.message}</p>)}
 
                   <div className="authBtn">
-                    <button disabled={signingUp}>
-                      {!signingUp ? 'Sign Up' : ''}
-                      {signingUp ? (<div className="spinner"></div>) : ''}
+                    <button disabled={isSigningUp}>
+                      {!isSigningUp ? 'Sign Up' : ''}
+                      {isSigningUp ? (<div className="spinner"></div>) : ''}
                     </button>
                   </div>
 
@@ -144,15 +165,18 @@ const AuthForm = () => {
                     <h3>Missed You! Ready to Create Again?</h3>
                     <p>Sign in to Prompt2Play, your shortcut to pro videos.</p>
                   </div>
-                  <form  className="authForm" id="loginForm">
+                  <form  className="authForm" id="loginForm" onSubmit={handleSubmit(submitSignInForm)}>
                     <div className="mail">
-                      <label htmlFor="email"><MailIcon/></label>
+                      <label htmlFor="email"><User2/></label>
                       <input 
-                      type="email" 
+                      type="text" 
                       name='email'
-                      placeholder='Email'
+                      placeholder='Email,Username or Phone'
+                      {...register("email")}
                       />
                     </div>
+                    
+                    {touchedFields.email && errors.email && (<p className='errorMailSignIn'>{errors.email.message}</p>)}
 
                     <div className="pass">
                       <label htmlFor="password"><Lock/></label>
@@ -160,10 +184,14 @@ const AuthForm = () => {
                       type="password" 
                       name='password'
                       placeholder='Password'
+                      {...register("password")}
                       />
                     </div>
+                    
+                    {touchedFields.password && errors.password && (<p className='error'>{errors.password.message}</p>)}
+
                     <div className="authBtn">
-                      <button>Log in</button>
+                      <button disabled={isSigningIn}>{isSigningIn ? <div className='spinner'></div> : "Log In"}</button>
                     </div>
                     <div className="condition">
                       <p>Don't have an account? <Link to={'/signup'}>Sign up</Link></p>

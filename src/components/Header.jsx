@@ -1,17 +1,19 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { header } from 'framer-motion/client';
+import { header, p } from 'framer-motion/client';
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [onHome, setOnHome] = useState(false);
+  const {checkIsAuthenticated} = useContext(AuthContext);
 
   const scroll = ()=>{
     window.scrollY > 0 ? setScrolled(true):setScrolled(false);
-    window.screenY >= 0 ? setOnHome(true):setOnHome(false);
+    window.scrollY >= 0 ? setOnHome(true):setOnHome(false);
   };
 
   window.addEventListener("scroll", scroll)
@@ -32,8 +34,20 @@ export default function Header() {
           </ul>
         </nav>
         <div className="auth-buttons">
-          <Link to="/login" className={`btn login-btn ${scrolled && "scrolled"}`}>Login</Link>
-          <Link to="/signup" className={`btn signup-btn ${scrolled && "scrolled"}`}>Sign Up</Link>
+          {
+            checkIsAuthenticated() ? (
+              <>
+                <p>
+                  Welcome,User
+                </p>
+              </>
+            ):(
+              <>
+                <Link to="/login" className={`btn login-btn ${scrolled && "scrolled"}`}>Login</Link>
+                <Link to="/signup" className={`btn signup-btn ${scrolled && "scrolled"}`}>Sign Up</Link>
+              </>
+            )
+          }
         </div>
         <div className="mobile">
           <button onClick={() => setIsOpened(!isOpened)}>{!isOpened ? <Menu size={25}/> : <X size={25}/>}</button>

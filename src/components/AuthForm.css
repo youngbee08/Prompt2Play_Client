@@ -126,6 +126,13 @@ input:focus{
     transform: translateY(-.5rem);
 }
 
+.errorMailSignIn{
+    color: red;
+    font-size: 12px;
+    line-height: 12px;
+    padding: 0 0 0 2.4rem;
+    transform: translateY(-.5rem);
+}
 
 @media screen and (max-width: 1024px) {
   .formCon {
@@ -162,9 +169,6 @@ input:focus{
     box-shadow: none;
   }
 
-  .formCon .content{
-    margin-top: 1rem;
-  }
 
   .formCon .content h3 {
     font-size: 16px;
@@ -180,7 +184,6 @@ input:focus{
 
   .formCon .authForm {
     gap: 0.75rem;
-    margin-top: 2rem;
   }
 
   .formCon .authForm .authBtn button {
@@ -189,7 +192,7 @@ input:focus{
   }
 
   .error,
-  .errorPassword {
+  .errorPassword,.errorMailSignIn {
     font-size: 11px;
     padding-left: 2rem;
   }

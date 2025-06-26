@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 const CheckMail = () => {
   const currentUserMail = localStorage.getItem("currentUserMail");
-  const {authRequest,currentUser,isSuccess} = useContext(AuthContext);
+  const {authRequest,currentUser,setCurrentUser} = useContext(AuthContext);
   const [resending, setResending] = useState(false)
   const [redirecting, setRedirecting] = useState(false)
   const [counting, setCounting] = useState(false);
@@ -29,11 +29,6 @@ const CheckMail = () => {
       });
     }, 1000);
   };
-
-  useEffect(() => {
-    count();
-  }, []);
-
   
   const resendMail = async (e)=>{
     e.preventDefault();
@@ -52,9 +47,10 @@ const CheckMail = () => {
     e.preventDefault();
     setRedirecting(true)
     try {
-      await authRequest({email:currentUserMail}, "reloadUser");
+      const res = await authRequest({email:currentUserMail}, "reloadUser");
+      await setCurrentUser(res?.user)
       console.log(currentUser)
-      if (isSuccess && currentUser) {
+      if (res?.status === "success" && currentUser) {
         if (currentUser.isEmailVerified) {
           navigate("/login");
         } else {
@@ -67,6 +63,10 @@ const CheckMail = () => {
       setRedirecting(false)
     }
   };
+
+  useEffect(() => {
+    count();
+  }, []);
   return (
     <div className="verify-container">
       <div className="verify-card">

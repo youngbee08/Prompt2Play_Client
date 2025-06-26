@@ -9,6 +9,8 @@ import AuthProvider from "./contexts/AuthContext"
 import { Toaster } from "sonner"
 import CheckMailMessage from "./pages/CheckMailMessage"
 import NotFound from "./components/NotFound"
+import ProtectedRoute from "./components/ProtectedRoute"
+import GennerateVideo from "./components/GennerateVideo"
 const App = () => {
   return (
     <AuthProvider>
@@ -20,6 +22,9 @@ const App = () => {
           <Route path="/verify" element={<CheckMailMessage/>}/>
           <Route path="/verify/:token" element={<VerifyAccount/>}/>
           <Route path="*" element={<NotFound/>}/>
+          <Route element={<ProtectedRoute/>}>
+            <Route path="/generate" element={<GennerateVideo/>}/>
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster richColors position="top-right" expand closeButton visibleToasts={1}/>
