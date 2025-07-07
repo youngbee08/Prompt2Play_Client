@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 import './AuthForm.css'
-import { AtSign, Loader, Lock, Mail, MailIcon, Phone, User, User2 } from 'lucide-react'
+import { AtSign, Lock, MailIcon, Phone, User, User2 } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import * as yup from "yup";
 import { useForm } from 'react-hook-form';
@@ -30,7 +30,7 @@ const AuthForm = () => {
   const {authRequest,isSigningUp,setIsSigningUp,isSigningIn,setIsSigningIn} = useContext(AuthContext);
 
 
-  const {register, handleSubmit, formState:{errors, touchedFields},trigger} = useForm({
+  const {register, handleSubmit, formState:{errors, touchedFields}} = useForm({
     resolver:yupResolver(location.pathname === "/signup" ? signupFormSchema : location.pathname === "/login" ? signinFormSchema : ""),
     mode:'onTouched',
     reValidateMode:'onChange',
@@ -59,8 +59,9 @@ const AuthForm = () => {
       const res = await authRequest(data, "signIn");
       if (res) {
         if (res.status === "success") {
-          navigate("/generate")
-          localStorage.setItem("accessToken", res.accessToken)
+          localStorage.removeItem("currentUserMail")
+          localStorage.setItem("accessToken", res?.accessToken)
+          navigate("/ai/text-to-video")
         }
       }
     } catch (error) {
@@ -189,6 +190,8 @@ const AuthForm = () => {
                     </div>
                     
                     {touchedFields.password && errors.password && (<p className='error'>{errors.password.message}</p>)}
+
+                    <Link to="/updatePassword?forgot=true" style={{textDecoration:"underline"}}>Forgot Password?</Link>
 
                     <div className="authBtn">
                       <button disabled={isSigningIn}>{isSigningIn ? <div className='spinner'></div> : "Log In"}</button>

@@ -10,7 +10,9 @@ import { Toaster } from "sonner"
 import CheckMailMessage from "./pages/CheckMailMessage"
 import NotFound from "./components/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
-import GennerateVideo from "./components/GennerateVideo"
+import UpdatePassword from "./pages/UpdatePassword"
+import UpdatePasswordFromMail from "./pages/UpdatePasswordFromMail"
+import Generate from "./pages/Generate"
 const App = () => {
   return (
     <AuthProvider>
@@ -19,11 +21,13 @@ const App = () => {
           <Route path="/" element={<Home/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/updatePassword" element={<UpdatePassword/>}/>
+          <Route path="/mail/updatePassword/:token" element={<UpdatePasswordFromMail/>}/>
           <Route path="/verify" element={<CheckMailMessage/>}/>
           <Route path="/verify/:token" element={<VerifyAccount/>}/>
           <Route path="*" element={<NotFound/>}/>
           <Route element={<ProtectedRoute/>}>
-            <Route path="/generate" element={<GennerateVideo/>}/>
+            <Route path="/ai/text-to-video" element={<Generate/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

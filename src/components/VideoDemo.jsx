@@ -14,13 +14,15 @@ const VideoDemo = () => {
       <h2>See It In Action</h2>
       <div className="videoWrapper">
             <video
-            src="https://sora.chatgpt.com/g/gen_01jygcy4w9eh5bb7p5vwbzkkch"
-            controls
+            src="https://www.w3schools.com/html/mov_bbb.mp4"
             playsInline
             autoPlay
             muted
             loop
             width="100%"
+            style={{
+              pointerEvents:"none"
+            }}
             />
       </div>
     </motion.section>

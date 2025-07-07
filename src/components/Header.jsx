@@ -1,8 +1,7 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { header, p } from 'framer-motion/client';
 import { AuthContext } from '../contexts/AuthContext';
 
 export default function Header() {
@@ -29,17 +28,15 @@ export default function Header() {
         <nav>
           <ul className="nav-links">
             <li><a href="#" className={`${scrolled && "scrolled"} ${onHome && "onHome"}`}>Home</a></li>
-            <li><Link to="/generate" className={`${scrolled && "scrolled"}`}>Generate</Link></li>
             <li><a href="#about" className={`${scrolled && "scrolled"}`}>About</a></li>
+            <li><a href="#contact" className={`${scrolled && "scrolled"}`}>Contact</a></li>
           </ul>
         </nav>
         <div className="auth-buttons">
           {
             checkIsAuthenticated() ? (
               <>
-                <p>
-                  Welcome,User
-                </p>
+                <Link to={'/ai/text-to-video'} className={`btn generate-btn ${scrolled && "scrolled"}`}>Generate A Video</Link>
               </>
             ):(
               <>
@@ -54,10 +51,20 @@ export default function Header() {
         </div>
         <div className={`hiddenNav ${isOpened ? "open" : "close"}`}>
           <a href="#">Home</a>
-          <Link to="/generate">Generate</Link>
           <a href="#about">About</a>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <a href="#contact">Contact</a>
+          {
+            checkIsAuthenticated() ? (
+              <>
+                <Link to={'/ai/text-to-video'} className={`btn generate-btn ${scrolled && "scrolled"}`}>Generate A Video</Link>
+              </>
+            ):(
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </>
+            )
+          }
         </div>
       </div>
     </header>

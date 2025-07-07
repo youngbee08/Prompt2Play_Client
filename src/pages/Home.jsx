@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import VideoDemo from '../components/VideoDemo';
 import FaqSection from '../components/FaqSection';
 import ScrollUp from '../components/ScrollUp';
+import Contact from '../components/Contact';
 
 const Home = () => {
   return (
@@ -32,7 +33,7 @@ const Home = () => {
 
       <FaqSection/>
 
-      <ScrollUp/>
+      <Contact/>
 
       <Footer />
     </>

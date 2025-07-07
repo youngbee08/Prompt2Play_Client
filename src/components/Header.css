@@ -142,6 +142,21 @@
   color: white;
   border: none;
 }
+.generate-btn {
+  background-color: transparent;
+  color: white;
+  background-color: #000;
+  border: 2px solid transparent;
+  font-weight: 800;
+  transition:all 1s ease-in-out;
+  margin: auto;
+}
+
+.generate-btn.scrolled {
+  background-color: white;
+  color: black;
+  /* border: 2px solid black; */
+}
 
 .mobile{
     display: none;

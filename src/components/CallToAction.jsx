@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './CallToAction.css';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { AuthContext } from '../contexts/AuthContext';
 
 const CallToAction = () => {
+  const {checkIsAuthenticated} = useContext(AuthContext);
   return (
     <motion.section
       className="ctaSection"
@@ -38,7 +40,7 @@ const CallToAction = () => {
         viewport={{ once: true }}
       >
         <Link to="/signup">
-          <button className="ctaBtn">Get Started <ArrowRight /></button>
+          <button className="ctaBtn">{checkIsAuthenticated() ? "Make Another Video" : "Get Started"} <ArrowRight /></button>
         </Link>
       </motion.div>
     </motion.section>

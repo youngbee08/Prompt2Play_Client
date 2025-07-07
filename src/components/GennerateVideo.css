@@ -1,0 +1,335 @@
+.generateHeader{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: .4rem;
+  z-index: 2000;
+
+}
+.generateHeader .generateLogo{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 40%;
+  height: 60px;
+}
+
+.generateLogo img{
+  width: 10%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.generateLogo h2{
+  font-size: 15px;
+}
+
+.generateLogo p{
+  font-size: 20px;
+  transform: translateY(-.4rem);
+  color: rgb(209, 206, 206);
+}
+
+.generateHeader .dropDown{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  gap: 1rem;
+  position: relative;
+}
+
+.dropDown .profileDropdown{
+  cursor: pointer;
+  display: flex;
+  border-radius: 50%;
+}
+
+.profileDropdown .chev{
+  transition: all 0.2s ease-in-out;
+}
+
+.profileDropdown .chev.open{
+  rotate: 180deg;
+}
+
+.dropDown .dropdownContent{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  left: -70%;
+  transform: translateY(1.5rem);
+  transition: all 0.2s ease-in-out;
+  background-color: white;
+  padding: .5rem 1rem;
+  border-radius: 9px;
+  box-shadow: 0 1px 5px black;
+  height: 300px;
+  width: 300px;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2000 !important;
+}
+
+.dropdownContent.open{
+  transform: translateY(2rem);
+  visibility: visible;
+  opacity: 1;
+}
+
+.dropdownContent .profile{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.profile .profilePic{
+  border: 2px solid gray;
+  border-radius: 50%;
+  padding: .2rem;
+  height: 50px;
+}
+
+.profile .details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-.8rem);
+}
+
+.details h2{
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.details a{
+  line-height: 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownContent .actionLinks{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.actionLinks a{
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  color: rgb(32, 32, 32);
+  font-size: 15px;
+  font-weight: 600;
+  padding: .5rem;
+  border-radius: 9px;
+  transition: all 0.2s ease-in-out;
+}
+
+.actionLinks a:hover{
+  background-color: gray;
+  color: black;
+}
+
+.generate{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 1rem 2rem;
+}
+
+.generate .generateCard{
+  background-color: #FFFFFF;
+  color: #333333;
+  margin:2rem auto;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  /* box-shadow: 0 1px 5px black; */
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  height: 400px;
+}
+
+.generate .head h2{
+  color: #333333;
+}
+
+.generate .contentTab .input{
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  width: 100%;
+  position: relative;
+}
+
+.input h3{
+  line-height: 0;
+}
+
+.input textarea{
+  height: 100px;
+  background-color: black;
+  padding: .8rem;
+  border-radius: 8px;
+  resize: none;
+  border: none;
+  outline: none;
+  color: rgb(199, 198, 198);
+}
+
+
+.input textarea:focus::placeholder{
+  color: transparent;
+}
+
+.input textarea.much{
+  color: red;
+}
+
+.input .count{
+  color: rgb(199, 198, 198);
+  position: absolute;
+  bottom: 29%;
+  right: 5%;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow:clip;
+}
+
+.input .count.much{
+  color: red;
+}
+
+.input button{
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  justify-content: center;
+  gap: .5rem;
+  background-color: black;
+  color: white;
+  border-radius: 9px;
+  border: none;
+  padding:1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.generate .videoTab{
+  width: 40%;
+}
+
+.generate .videoTab .video{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.video p{
+  color: #333333;
+  font-weight: 600;
+}
+
+@media screen and (max-width:500px) {
+  .generateHeader{
+    background-color: #ebecec;
+    width: 90%;
+    padding: .5rem 1rem;
+    position: relative;
+    border-bottom: 2px solid rgb(209, 206, 206);
+    position: sticky;
+    top: 0;
+  }
+
+  .generateHeader .title,.split{
+    display: none;
+  }
+
+  .generateHeader .generateLogo{
+    width: 70%;
+  }
+
+  .generateLogo img{
+    width: 30%;
+  }
+
+  .generateHeader .dropDown{
+    width: 30%;
+  }
+
+  .generateHeader .dropDown{
+    position: unset;
+  }
+
+  .dropDown .dropdownContent{
+    left: 5%;
+    width: 70%;
+  }
+
+  .dropdownContent.open{
+    transform: translateY(3.2rem);
+  }
+
+  .generate{
+    flex-direction: column;
+    width: 70%;
+  }
+
+  .generate .generateCard{
+    width: 95%;
+    height: fit-content;
+  }
+
+  .generate .videoTab{
+    background-color: transparent;
+  }
+}
+
+@media screen and (min-width: 501px) and (max-width: 1024px) {
+  .generateHeader{
+    background-color: #ebecec;
+    width: 100%;
+    padding: .5rem 1rem;
+    position: relative;
+    position: sticky;
+    top: 0;
+  }
+
+  .generateHeader .title,.split{
+    display: none;
+  }
+
+  .generateHeader .generateLogo{
+    width: 50%;
+  }
+
+  .generateLogo img{
+    width: 20%;
+  }
+
+  .generateHeader .dropDown{
+    width: 30%;
+  }
+
+  .generate {
+    flex-direction: column;
+    padding: 1rem 2rem;
+    width: 90%;
+  }
+
+  .generate .generateCard{
+    width: 70%;
+  }
+
+}
