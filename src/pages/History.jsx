@@ -1,5 +1,5 @@
 import React from 'react'
-import Videos from '../components/videos'
+import Videos from '../components/Videos'
 
 const History = () => {
   return (
