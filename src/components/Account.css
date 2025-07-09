@@ -1,0 +1,173 @@
+.goBack button{
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin: .5rem;
+  border-radius: 7px;
+  border: none;
+  padding: .2rem .8rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.editContainer {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 800;
+}
+
+.pPicture {
+  position: relative;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editIcon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #111827;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.profileDetals {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+}
+
+.inputGroup label {
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.inputGroup input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: .9rem;
+  font-weight: 600;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.profileDetals .actionBtns{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionBtns .saveBtn {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+  font-weight: 600;
+}
+
+.actionBtns .saveBtn:hover {
+  background-color: #636364;
+}
+
+.actionBtns .saveBtn .spinner {
+  width: 8px;
+  height: 8px;
+  border: 4px solid rgba(79, 70, 229, 0.2);
+  border-radius: 50%;
+  border-color: white;
+  border-top: 4px solid transparent;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.actionBtns .cancelBtn{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .editContainer {
+    padding: 2rem 1.5rem;
+  }
+
+  .pPicture {
+    width: 80px;
+    height: 80px;
+  }
+
+  .inputGroup{
+    width: 90%;
+  }
+
+  .editIcon {
+    padding: 0.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .editContainer {
+    padding: 1.5rem 1rem;
+  }
+
+  .profileDetals {
+    gap: 1rem;
+  }
+
+  .saveBtn {
+    font-size: 0.95rem;
+  }
+}
+
+
+.previewImg,.profileImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+input[type="file"] {
+  display: none;
+}

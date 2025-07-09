@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import UpdatePassword from "./pages/UpdatePassword"
 import UpdatePasswordFromMail from "./pages/UpdatePasswordFromMail"
 import Generate from "./pages/Generate"
+import AccountCenter from "./pages/AccountCenter"
+import History from "./pages/History"
 const App = () => {
   return (
     <AuthProvider>
@@ -28,6 +30,8 @@ const App = () => {
           <Route path="*" element={<NotFound/>}/>
           <Route element={<ProtectedRoute/>}>
             <Route path="/ai/text-to-video" element={<Generate/>}/>
+            <Route path="/user/account-center" element={<AccountCenter/>}/>
+            <Route path="/user/history" element={<History/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

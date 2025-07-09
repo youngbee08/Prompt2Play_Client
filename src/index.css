@@ -29,3 +29,8 @@ button:disabled{
   cursor: not-allowed !important;
   opacity: 0.2;
 }
+
+input:read-only{
+  background-color: rgb(214, 213, 213);
+  cursor:grab;
+}
