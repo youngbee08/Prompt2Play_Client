@@ -10,20 +10,30 @@
 - ✅ User Authentication (Signup/Login)
 - ✅ Email Verification UI
 - ✅ Clean UI and intuitive layout
-- 🔄 AI-powered video generation (coming soon)
-- 🔄 Custom scene creation (coming soon)
+- ✅ AI-powered video generation
+- ✅ User Profile Update with Image Preview
+- ✅ Prompt History
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Frontend**: React + Vite
-- **Styling**: CSS3 (No CSS framework)
+- **Routing**: React Router
+- **Styling**: Pure CSS3
 - **Icons**: Lucide React
 - **Form Validation**: React Hook Form + Yup
 - **Animations**: Framer Motion
+- **State & Context**: React Context API
 
 ---
+
+##🧪 Live Demo
+
+🔗 Visit Now:https://prompt2-play-client.vercel.app/
+
+___
+
 
 ## 🔧 Setup Instructions
 
@@ -59,7 +69,3 @@ npm run dev
 Bamitale Abdul-Azeem Irebami
 Full Stack Developer | Creator of Prompt2Play
 GitHub: @youngbee08
-
-### ⚠️ License
-
-This project is under active development and not yet licensed for public or commercial use.
