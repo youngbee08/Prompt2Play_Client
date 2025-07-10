@@ -11,7 +11,7 @@ const Contact = () => {
         <div className="contactInputs">
           <label htmlFor="name"><User size={35}/></label>
           <input required title='First Name' type="text" name='name' placeholder='First Name'/>
-          <input required title='Last Name' type="text" name='name' placeholder='Last Name' className='last'/>
+          <input title='Last Name' type="text" name='name' placeholder='Last Name (Optional)' className='last'/>
         </div>
         <div className="contactTextarea">
           <label htmlFor="message"><MessageCircle size={35}/></label>
