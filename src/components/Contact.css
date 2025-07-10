@@ -74,13 +74,13 @@
     text-align: center;
   }
 
-  .contactInputs{
-    flex-direction: column;
-  }
-
   .contactInputs input{
     margin: 0 !important;
     transform: translateY(0);
+  }
+
+  .contactInputs .last{
+    display: none;
   }
 
 }
