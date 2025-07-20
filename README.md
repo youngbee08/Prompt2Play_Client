@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Features (In Progress)
+## 🚀 Features
 
 - ✅ Responsive Landing Page
 - ✅ User Authentication (Signup/Login)
